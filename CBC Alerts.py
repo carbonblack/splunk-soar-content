@@ -339,8 +339,8 @@ def cf_local_get_process_analysis_url_1(action=None, success=None, container=Non
     ## Custom Code End
     ################################################################################    
 
-    # call custom function "local/get_process_analysis_url", returns the custom_function_run_id
-    phantom.custom_function(custom_function='local/get_process_analysis_url', parameters=parameters, name='cf_local_get_process_analysis_url_1', callback=prompt_confirm_process_analysis)
+    # call custom function "cbc-playbooks/get_process_analysis_url", returns the custom_function_run_id
+    phantom.custom_function(custom_function='cbc-playbooks/get_process_analysis_url', parameters=parameters, name='cf_local_get_process_analysis_url_1', callback=prompt_confirm_process_analysis)
 
     return
 
@@ -373,8 +373,8 @@ def cf_local_get_alert_triage_url_4(action=None, success=None, container=None, r
     ## Custom Code End
     ################################################################################    
 
-    # call custom function "local/get_alert_triage_url", returns the custom_function_run_id
-    phantom.custom_function(custom_function='local/get_alert_triage_url', parameters=parameters, name='cf_local_get_alert_triage_url_4', callback=prompt_alert_triage_confirm)
+    # call custom function "cbc-playbooks/get_alert_triage_url", returns the custom_function_run_id
+    phantom.custom_function(custom_function='cbc-playbooks/get_alert_triage_url', parameters=parameters, name='cf_local_get_alert_triage_url_4', callback=prompt_alert_triage_confirm)
 
     return
 

@@ -12,7 +12,7 @@ For information about the Carbon Black Cloud Splunk App and how to use this play
 * Under the "Repositories" drop-down select "Configure a new repository"
 * Under "Repo URL" put "https://github.com/carbonblack/splunk-soar-content.git"
 * Under "Branch name" put "main"
-* Set a Repo Name (e.g "CBC playbooks")
+* Under "Repo name" put "cbc-playbooks"
 * Leave "Username" and "Password" fields empty
 * Click "Save"
 * Back to the playbooks page click the "Update from source control" button

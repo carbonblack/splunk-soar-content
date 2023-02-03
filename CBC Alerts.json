@@ -1304,11 +1304,11 @@
                                 "display": "block"
                             }
                         },
-                        "block_code": "def cf_local_get_alert_triage_url_4(action=None, success=None, container=None, results=None, handle=None, filtered_artifacts=None, filtered_results=None, custom_function=None, **kwargs):\n    phantom.debug('cf_local_get_alert_triage_url_4() called')\n    \n    container_data_0 = phantom.collect2(container=container, datapath=['artifact:*.cef.id', 'artifact:*.id'])\n    container_property_0 = [\n        [\n            container.get(\"asset_name\"),\n        ],\n    ]\n\n    parameters = []\n\n    container_property_0_0 = [item[0] for item in container_property_0]\n    container_data_0_0 = [item[0] for item in container_data_0]\n\n    parameters.append({\n        'asset': container_property_0_0,\n        'alert_id': container_data_0_0,\n    })\n    ################################################################################\n    ## Custom Code Start\n    ################################################################################\n\n    # Write your custom code here...\n\n    ################################################################################\n    ## Custom Code End\n    ################################################################################    \n\n    # call custom function \"local/get_alert_triage_url\", returns the custom_function_run_id\n    phantom.custom_function(custom_function='local/get_alert_triage_url', parameters=parameters, name='cf_local_get_alert_triage_url_4', callback=prompt_alert_triage_confirm)\n\n    return",
+                        "block_code": "def cf_local_get_alert_triage_url_4(action=None, success=None, container=None, results=None, handle=None, filtered_artifacts=None, filtered_results=None, custom_function=None, **kwargs):\n    phantom.debug('cf_local_get_alert_triage_url_4() called')\n    \n    container_data_0 = phantom.collect2(container=container, datapath=['artifact:*.cef.id', 'artifact:*.id'])\n    container_property_0 = [\n        [\n            container.get(\"asset_name\"),\n        ],\n    ]\n\n    parameters = []\n\n    container_property_0_0 = [item[0] for item in container_property_0]\n    container_data_0_0 = [item[0] for item in container_data_0]\n\n    parameters.append({\n        'asset': container_property_0_0,\n        'alert_id': container_data_0_0,\n    })\n    ################################################################################\n    ## Custom Code Start\n    ################################################################################\n\n    # Write your custom code here...\n\n    ################################################################################\n    ## Custom Code End\n    ################################################################################    \n\n    # call custom function \"cbc-playbooks/get_alert_triage_url\", returns the custom_function_run_id\n    phantom.custom_function(custom_function='cbc-playbooks/get_alert_triage_url', parameters=parameters, name='cf_local_get_alert_triage_url_4', callback=prompt_alert_triage_confirm)\n\n    return",
                         "callback_code": "",
                         "callback_start": 1,
                         "callsback": true,
-                        "cfDisplayPath": "local/get_alert_triage_url",
+                        "cfDisplayPath": "cbc-playbooks/get_alert_triage_url",
                         "cfInputs": {
                             "alert_id": {
                                 "collectionType": "container_data",
@@ -1330,7 +1330,7 @@
                         "currentVersion": true,
                         "customCodeEndLineOffset": 7,
                         "customCodeStartLine": 22,
-                        "customFunction": "local/get_alert_triage_url",
+                        "customFunction": "cbc-playbooks/get_alert_triage_url",
                         "customFunctionId": null,
                         "custom_callback": "",
                         "custom_code": "",
@@ -1469,7 +1469,7 @@
                                 "playbooks": [
                                     {
                                         "active": false,
-                                        "display_path": "local/cbc_alerts",
+                                        "display_path": "cbc-playbooks/cbc_alerts",
                                         "draft_mode": false,
                                         "id": 143,
                                         "name": "CBC alerts",
@@ -4586,11 +4586,11 @@
                                 "display": "block"
                             }
                         },
-                        "block_code": "def cf_local_get_process_analysis_url_1(action=None, success=None, container=None, results=None, handle=None, filtered_artifacts=None, filtered_results=None, custom_function=None, **kwargs):\n    phantom.debug('cf_local_get_process_analysis_url_1() called')\n    \n    parameters = []\n\n    parameters.append({\n        'asset': None,\n        'alert_id': None,\n    })\n    ################################################################################\n    ## Custom Code Start\n    ################################################################################\n\n    # Write your custom code here...\n\n    ################################################################################\n    ## Custom Code End\n    ################################################################################    \n\n    # call custom function \"local/get_process_analysis_url\", returns the custom_function_run_id\n    phantom.custom_function(custom_function='local/get_process_analysis_url', parameters=parameters, name='cf_local_get_process_analysis_url_1', callback=prompt_confirm_process_analysis)\n\n    return",
+                        "block_code": "def cf_local_get_process_analysis_url_1(action=None, success=None, container=None, results=None, handle=None, filtered_artifacts=None, filtered_results=None, custom_function=None, **kwargs):\n    phantom.debug('cf_local_get_process_analysis_url_1() called')\n    \n    parameters = []\n\n    parameters.append({\n        'asset': None,\n        'alert_id': None,\n    })\n    ################################################################################\n    ## Custom Code Start\n    ################################################################################\n\n    # Write your custom code here...\n\n    ################################################################################\n    ## Custom Code End\n    ################################################################################    \n\n    # call custom function \"cbc-playbooks/get_process_analysis_url\", returns the custom_function_run_id\n    phantom.custom_function(custom_function='cbc-playbooks/get_process_analysis_url', parameters=parameters, name='cf_local_get_process_analysis_url_1', callback=prompt_confirm_process_analysis)\n\n    return",
                         "callback_code": "",
                         "callback_start": 360,
                         "callsback": true,
-                        "cfDisplayPath": "local/get_process_analysis_url",
+                        "cfDisplayPath": "cbc-playbooks/get_process_analysis_url",
                         "cfInputs": {
                             "alert_id": {
                                 "dataPath": "",
@@ -4608,7 +4608,7 @@
                         "currentVersion": true,
                         "customCodeEndLineOffset": 7,
                         "customCodeStartLine": 12,
-                        "customFunction": "local/get_process_analysis_url",
+                        "customFunction": "cbc-playbooks/get_process_analysis_url",
                         "customFunctionId": null,
                         "custom_callback": "",
                         "custom_code": "",
