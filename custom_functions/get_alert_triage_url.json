@@ -1,0 +1,37 @@
+{
+    "create_time": "2022-11-23T07:55:51.646018+00:00",
+    "custom_function_id": "b13421c267f11be85c25c101439f7cd2f150caa3",
+    "description": "Gets URL of alert triage page in CBC console given configuration asset and alert id",
+    "draft_mode": false,
+    "inputs": [
+        {
+            "contains_type": [
+                "*"
+            ],
+            "description": "configuration asset name or id",
+            "input_type": "list",
+            "name": "asset",
+            "placeholder": "config asset"
+        },
+        {
+            "contains_type": [
+                "*"
+            ],
+            "description": "",
+            "input_type": "list",
+            "name": "alert_id",
+            "placeholder": "alert ID"
+        }
+    ],
+    "outputs": [
+        {
+            "contains_type": [
+                "*"
+            ],
+            "data_path": "console_url",
+            "description": "URL to console"
+        }
+    ],
+    "platform_version": "4.10.2.47587",
+    "python_version": "3"
+}
