@@ -778,7 +778,7 @@
                 },
                 "24": {
                     "data": {
-                        "action": "dismiss all future alerts",
+                        "action": "dismiss future alerts",
                         "actionType": "correct",
                         "advanced": {
                             "join": []
@@ -790,7 +790,7 @@
                         "connectorId": "d1896254-78f3-4c75-aa7b-d48359699641",
                         "connectorVersion": "v1",
                         "functionId": 1,
-                        "functionName": "dismiss_all_future_alerts_1",
+                        "functionName": "dismiss_future_alerts_1",
                         "id": "24",
                         "parameters": {
                             "alert_id": "artifact:*.cef.id",

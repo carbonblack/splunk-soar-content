@@ -527,7 +527,7 @@ def decision_5(action=None, success=None, container=None, results=None, handle=N
 
     # call connected blocks if condition 2 matched
     if found_match_2:
-        dismiss_all_future_alerts_1(action=action, success=success, container=container, results=results, handle=handle)
+        dismiss_future_alerts_1(action=action, success=success, container=container, results=results, handle=handle)
         return
 
     return
@@ -598,8 +598,8 @@ def get_live_query_url_2(action=None, success=None, container=None, results=None
 
 
 @phantom.playbook_block()
-def dismiss_all_future_alerts_1(action=None, success=None, container=None, results=None, handle=None, filtered_artifacts=None, filtered_results=None, custom_function=None, **kwargs):
-    phantom.debug("dismiss_all_future_alerts_1() called")
+def dismiss_future_alerts_1(action=None, success=None, container=None, results=None, handle=None, filtered_artifacts=None, filtered_results=None, custom_function=None, **kwargs):
+    phantom.debug("dismiss_future_alerts_1() called")
 
     # phantom.debug('Action: {0} {1}'.format(action['name'], ('SUCCEEDED' if success else 'FAILED')))
 
@@ -607,7 +607,7 @@ def dismiss_all_future_alerts_1(action=None, success=None, container=None, resul
 
     parameters = []
 
-    # build parameters list for 'dismiss_all_future_alerts_1' call
+    # build parameters list for 'dismiss_future_alerts_1' call
     for container_artifact_item in container_artifact_data:
         if container_artifact_item[0] is not None:
             parameters.append({
@@ -627,7 +627,7 @@ def dismiss_all_future_alerts_1(action=None, success=None, container=None, resul
     ## Custom Code End
     ################################################################################
 
-    phantom.act("dismiss all future alerts", parameters=parameters, name="dismiss_all_future_alerts_1", assets=["dev01"])
+    phantom.act("dismiss future alerts", parameters=parameters, name="dismiss_future_alerts_1", assets=["dev01"])
 
     return
 

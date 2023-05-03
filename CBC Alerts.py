@@ -875,22 +875,22 @@ def decision_7(action=None, success=None, container=None, results=None, handle=N
 
     # call connected blocks if condition 2 matched
     if matched:
-        dismiss_all_future_alerts_1(action=action, success=success, container=container, results=results, handle=handle, custom_function=custom_function)
+        dismiss_future_alerts_1(action=action, success=success, container=container, results=results, handle=handle, custom_function=custom_function)
         return
 
     return
 
-def dismiss_all_future_alerts_1(action=None, success=None, container=None, results=None, handle=None, filtered_artifacts=None, filtered_results=None, custom_function=None, **kwargs):
-    phantom.debug('dismiss_all_future_alerts_1() called')
+def dismiss_future_alerts_1(action=None, success=None, container=None, results=None, handle=None, filtered_artifacts=None, filtered_results=None, custom_function=None, **kwargs):
+    phantom.debug('dismiss_future_alerts_1() called')
         
     #phantom.debug('Action: {0} {1}'.format(action['name'], ('SUCCEEDED' if success else 'FAILED')))
     
-    # collect data for 'dismiss_all_future_alerts_1' call
+    # collect data for 'dismiss_future_alerts_1' call
     container_data = phantom.collect2(container=container, datapath=['artifact:*.cef.id', 'artifact:*.id'])
 
     parameters = []
     
-    # build parameters list for 'dismiss_all_future_alerts_1' call
+    # build parameters list for 'dismiss_future_alerts_1' call
     for container_item in container_data:
         if container_item[0]:
             parameters.append({
@@ -901,7 +901,7 @@ def dismiss_all_future_alerts_1(action=None, success=None, container=None, resul
                 'context': {'artifact_id': container_item[1]},
             })
 
-    phantom.act(action="dismiss all future alerts", parameters=parameters, assets=['dev01'], name="dismiss_all_future_alerts_1")
+    phantom.act(action="dismiss future alerts", parameters=parameters, assets=['dev01'], name="dismiss_future_alerts_1")
 
     return
 

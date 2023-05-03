@@ -199,7 +199,7 @@
                         "callback_start": 1,
                         "callsback": false,
                         "connected_to_start": true,
-                        "connection_name": "dismiss alert, ban hash, unban hash, add ioc to feed or watchlist 1, add ioc to feed or watchlist 2, remove ioc from feed, remove ioc from watchlist, set device policy, dismiss all future alerts",
+                        "connection_name": "dismiss alert, ban hash, unban hash, add ioc to feed or watchlist 1, add ioc to feed or watchlist 2, remove ioc from feed, remove ioc from watchlist, set device policy, dismiss future alerts",
                         "connection_type": "action",
                         "custom_callback": "",
                         "custom_code": "",
@@ -5724,7 +5724,7 @@
                                 "opacity": 1
                             }
                         },
-                        "block_code": "def decision_7(action=None, success=None, container=None, results=None, handle=None, filtered_artifacts=None, filtered_results=None, custom_function=None, **kwargs):\n    phantom.debug('decision_7() called')\n\n    # check for 'if' condition 1\n    matched = phantom.decision(\n        container=container,\n        action_results=results,\n        conditions=[\n            [\"prompt_dismiss:action_result.summary.responses.0\", \"==\", \"Dismiss alert\"],\n        ])\n\n    # call connected blocks if condition 1 matched\n    if matched:\n        dismiss_alert_2(action=action, success=success, container=container, results=results, handle=handle, custom_function=custom_function)\n        return\n\n    # check for 'elif' condition 2\n    matched = phantom.decision(\n        container=container,\n        action_results=results,\n        conditions=[\n            [\"prompt_dismiss:action_result.summary.responses.0\", \"==\", \"Dismiss all future alerts\"],\n        ])\n\n    # call connected blocks if condition 2 matched\n    if matched:\n        dismiss_all_future_alerts_1(action=action, success=success, container=container, results=results, handle=handle, custom_function=custom_function)\n        return\n\n    return",
+                        "block_code": "def decision_7(action=None, success=None, container=None, results=None, handle=None, filtered_artifacts=None, filtered_results=None, custom_function=None, **kwargs):\n    phantom.debug('decision_7() called')\n\n    # check for 'if' condition 1\n    matched = phantom.decision(\n        container=container,\n        action_results=results,\n        conditions=[\n            [\"prompt_dismiss:action_result.summary.responses.0\", \"==\", \"Dismiss alert\"],\n        ])\n\n    # call connected blocks if condition 1 matched\n    if matched:\n        dismiss_alert_2(action=action, success=success, container=container, results=results, handle=handle, custom_function=custom_function)\n        return\n\n    # check for 'elif' condition 2\n    matched = phantom.decision(\n        container=container,\n        action_results=results,\n        conditions=[\n            [\"prompt_dismiss:action_result.summary.responses.0\", \"==\", \"Dismiss all future alerts\"],\n        ])\n\n    # call connected blocks if condition 2 matched\n    if matched:\n        dismiss_future_alerts_1(action=action, success=success, container=container, results=results, handle=handle, custom_function=custom_function)\n        return\n\n    return",
                         "callback_code": "",
                         "callback_start": 1,
                         "callsback": false,
@@ -5936,7 +5936,7 @@
                         "z": 569
                     },
                     {
-                        "action": "dismiss all future alerts",
+                        "action": "dismiss future alerts",
                         "action_type": "correct",
                         "active": false,
                         "active_keys": {},
@@ -5951,13 +5951,13 @@
                         "approver": "",
                         "assets": [
                             {
-                                "action": "dismiss all future alerts",
+                                "action": "dismiss future alerts",
                                 "actions": [
                                     "test connectivity",
                                     "on poll",
                                     "normalize artifact",
                                     "dismiss alert",
-                                    "dismiss all future alerts",
+                                    "dismiss future alerts",
                                     "get enriched event",
                                     "get file",
                                     "delete file",
@@ -6080,7 +6080,7 @@
                         ],
                         "attrs": {
                             ".action": {
-                                "text": "dismiss all future alerts"
+                                "text": "dismiss future alerts"
                             },
                             ".background": {
                                 "fill": "#000000",
@@ -6143,7 +6143,7 @@
                                 "opacity": 1
                             }
                         },
-                        "block_code": "def dismiss_all_future_alerts_1(action=None, success=None, container=None, results=None, handle=None, filtered_artifacts=None, filtered_results=None, custom_function=None, **kwargs):\n    phantom.debug('dismiss_all_future_alerts_1() called')\n        \n    #phantom.debug('Action: {0} {1}'.format(action['name'], ('SUCCEEDED' if success else 'FAILED')))\n    \n    # collect data for 'dismiss_all_future_alerts_1' call\n    container_data = phantom.collect2(container=container, datapath=['artifact:*.cef.id', 'artifact:*.id'])\n\n    parameters = []\n    \n    # build parameters list for 'dismiss_all_future_alerts_1' call\n    for container_item in container_data:\n        if container_item[0]:\n            parameters.append({\n                'comment': \"\\\"Dismissed by Splunk SOAR CBC App\\\"\",\n                'alert_id': container_item[0],\n                'remediation_status': \"\\\"fixed\\\"\",\n                # context (artifact id) is added to associate results with the artifact\n                'context': {'artifact_id': container_item[1]},\n            })\n\n    phantom.act(action=\"dismiss all future alerts\", parameters=parameters, assets=['dev01'], name=\"dismiss_all_future_alerts_1\")\n\n    return",
+                        "block_code": "def dismiss_future_alerts_1(action=None, success=None, container=None, results=None, handle=None, filtered_artifacts=None, filtered_results=None, custom_function=None, **kwargs):\n    phantom.debug('dismiss_future_alerts_1() called')\n        \n    #phantom.debug('Action: {0} {1}'.format(action['name'], ('SUCCEEDED' if success else 'FAILED')))\n    \n    # collect data for 'dismiss_future_alerts_1' call\n    container_data = phantom.collect2(container=container, datapath=['artifact:*.cef.id', 'artifact:*.id'])\n\n    parameters = []\n    \n    # build parameters list for 'dismiss_future_alerts_1' call\n    for container_item in container_data:\n        if container_item[0]:\n            parameters.append({\n                'comment': \"\\\"Dismissed by Splunk SOAR CBC App\\\"\",\n                'alert_id': container_item[0],\n                'remediation_status': \"\\\"fixed\\\"\",\n                # context (artifact id) is added to associate results with the artifact\n                'context': {'artifact_id': container_item[1]},\n            })\n\n    phantom.act(action=\"dismiss future alerts\", parameters=parameters, assets=['dev01'], name=\"dismiss_future_alerts_1\")\n\n    return",
                         "callback_code": "",
                         "callback_start": 1,
                         "callsback": true,
@@ -6171,7 +6171,7 @@
                         "line_end": 908,
                         "line_start": 883,
                         "message": "Configuring now",
-                        "name": "dismiss all future alerts",
+                        "name": "dismiss future alerts",
                         "notes": "",
                         "number": 1,
                         "order": 32,
@@ -6235,7 +6235,7 @@
                             "y": 100
                         },
                         "previous_function": "",
-                        "previous_name": "dismiss_all_future_alerts_1",
+                        "previous_name": "dismiss_future_alerts_1",
                         "required_params": {
                             "alert_id": true
                         },
