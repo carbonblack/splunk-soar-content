@@ -1,0 +1,31 @@
+{
+    "create_time": "2023-05-02T12:33:53.341445+00:00",
+    "custom_function_id": "e355ea74e6d93d40c82815a529e58429b2304524",
+    "description": "Get URL to Live Response",
+    "draft_mode": false,
+    "inputs": [
+        {
+            "contains_type": [],
+            "description": "",
+            "input_type": "list",
+            "name": "asset",
+            "placeholder": ""
+        },
+        {
+            "contains_type": [],
+            "description": "",
+            "input_type": "list",
+            "name": "device_id",
+            "placeholder": ""
+        }
+    ],
+    "outputs": [
+        {
+            "contains_type": [],
+            "data_path": "console_url",
+            "description": ""
+        }
+    ],
+    "platform_version": "5.3.4.95226",
+    "python_version": "3"
+}

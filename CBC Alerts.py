@@ -25,7 +25,7 @@ def decision_1(action=None, success=None, container=None, results=None, handle=N
 
     # call connected blocks if condition 1 matched
     if matched:
-        cf_local_get_alert_triage_url_4(action=action, success=success, container=container, results=results, handle=handle, custom_function=custom_function)
+        cf_cbc_playbooks_get_alert_triage_url_4(action=action, success=success, container=container, results=results, handle=handle, custom_function=custom_function)
         get_enriched_event_1(action=action, success=success, container=container, results=results, handle=handle, custom_function=custom_function)
         return
 
@@ -38,7 +38,7 @@ def decision_1(action=None, success=None, container=None, results=None, handle=N
 
     # call connected blocks if condition 2 matched
     if matched:
-        cf_local_get_process_analysis_url_1(action=action, success=success, container=container, results=results, handle=handle, custom_function=custom_function)
+        cf_cbc_playbooks_get_process_analysis_url_1(action=action, success=success, container=container, results=results, handle=handle, custom_function=custom_function)
         get_process_metadata_1(action=action, success=success, container=container, results=results, handle=handle, custom_function=custom_function)
         return
 
@@ -61,7 +61,7 @@ def get_process_metadata_1(action=None, success=None, container=None, results=No
                 'context': {'artifact_id': container_item[1]},
             })
 
-    phantom.act(action="get process metadata", parameters=parameters, assets=['test configuration asset'], callback=join_prompt_watchlist_action, name="get_process_metadata_1")
+    phantom.act(action="get process metadata", parameters=parameters, assets=['dev01'], callback=join_prompt_watchlist_action, name="get_process_metadata_1")
 
     return
 
@@ -94,7 +94,7 @@ def prompt_watchlist_action(action=None, success=None, container=None, results=N
         },
     ]
 
-    phantom.prompt2(container=container, user=user, message=message, respond_in_mins=30, name="prompt_watchlist_action", parameters=parameters, response_types=response_types, callback=decision_2)
+    phantom.prompt2(container=container, user=user, message=message, respond_in_mins=30, name="prompt_watchlist_action", separator=", ", parameters=parameters, response_types=response_types, callback=decision_2)
 
     return
 
@@ -148,7 +148,7 @@ def decision_2(action=None, success=None, container=None, results=None, handle=N
 
     # call connected blocks if condition 3 matched
     if matched:
-        join_dismiss_alert_2(action=action, success=success, container=container, results=results, handle=handle, custom_function=custom_function)
+        join_prompt_dismiss(action=action, success=success, container=container, results=results, handle=handle, custom_function=custom_function)
         return
 
     # check for 'elif' condition 4
@@ -198,22 +198,8 @@ def dismiss_alert_2(action=None, success=None, container=None, results=None, han
                 'context': {'artifact_id': container_item[1]},
             })
 
-    phantom.act(action="dismiss alert", parameters=parameters, assets=['test configuration asset'], name="dismiss_alert_2")
+    phantom.act(action="dismiss alert", parameters=parameters, assets=['dev01'], name="dismiss_alert_2")
 
-    return
-
-def join_dismiss_alert_2(action=None, success=None, container=None, results=None, handle=None, filtered_artifacts=None, filtered_results=None, custom_function=None):
-    phantom.debug('join_dismiss_alert_2() called')
-    
-    # if the joined function has already been called, do nothing
-    if phantom.get_run_data(key='join_dismiss_alert_2_called'):
-        return
-
-    # no callbacks to check, call connected block "dismiss_alert_2"
-    phantom.save_run_data(key='join_dismiss_alert_2_called', value='dismiss_alert_2', auto=True)
-
-    dismiss_alert_2(container=container, handle=handle)
-    
     return
 
 def add_ioc_to_feed_or_watchlist_1(action=None, success=None, container=None, results=None, handle=None, filtered_artifacts=None, filtered_results=None, custom_function=None, **kwargs):
@@ -244,7 +230,7 @@ def add_ioc_to_feed_or_watchlist_1(action=None, success=None, container=None, re
                         'context': {'artifact_id': results_item_1[1]},
                     })
 
-    phantom.act(action="add ioc to feed or watchlist", parameters=parameters, assets=['test configuration asset'], name="add_ioc_to_feed_or_watchlist_1")
+    phantom.act(action="add ioc to feed or watchlist", parameters=parameters, assets=['dev01'], name="add_ioc_to_feed_or_watchlist_1")
 
     return
 
@@ -267,7 +253,7 @@ def ban_hash_1(action=None, success=None, container=None, results=None, handle=N
                 'context': {'artifact_id': results_item_1[1]},
             })
 
-    phantom.act(action="ban hash", parameters=parameters, assets=['test configuration asset'], name="ban_hash_1")
+    phantom.act(action="ban hash", parameters=parameters, assets=['dev01'], name="ban_hash_1")
 
     return
 
@@ -290,7 +276,7 @@ def unban_hash_1(action=None, success=None, container=None, results=None, handle
                 'context': {'artifact_id': results_item_1[1]},
             })
 
-    phantom.act(action="unban hash", parameters=parameters, assets=['test configuration asset'], name="unban_hash_1")
+    phantom.act(action="unban hash", parameters=parameters, assets=['dev01'], name="unban_hash_1")
 
     return
 
@@ -303,7 +289,7 @@ def prompt_alert_triage_confirm(action=None, success=None, container=None, resul
 
     # parameter list for template variable replacement
     parameters = [
-        "cf_local_get_alert_triage_url_4:custom_function_result.data.console_url",
+        "cf_cbc_playbooks_get_alert_triage_url_4:custom_function_result.data.console_url",
     ]
 
     #responses:
@@ -316,18 +302,28 @@ def prompt_alert_triage_confirm(action=None, success=None, container=None, resul
         },
     ]
 
-    phantom.prompt2(container=container, user=user, message=message, respond_in_mins=30, name="prompt_alert_triage_confirm", parameters=parameters, response_types=response_types, callback=join_prompt_choose_cbabalytics_action)
+    phantom.prompt2(container=container, user=user, message=message, respond_in_mins=30, name="prompt_alert_triage_confirm", separator=", ", parameters=parameters, response_types=response_types, callback=join_prompt_choose_cbabalytics_action)
 
     return
 
-def cf_local_get_process_analysis_url_1(action=None, success=None, container=None, results=None, handle=None, filtered_artifacts=None, filtered_results=None, custom_function=None, **kwargs):
-    phantom.debug('cf_local_get_process_analysis_url_1() called')
+def cf_cbc_playbooks_get_process_analysis_url_1(action=None, success=None, container=None, results=None, handle=None, filtered_artifacts=None, filtered_results=None, custom_function=None, **kwargs):
+    phantom.debug('cf_cbc_playbooks_get_process_analysis_url_1() called')
     
+    container_data_0 = phantom.collect2(container=container, datapath=['artifact:*.cef.id', 'artifact:*.id'])
+    container_property_0 = [
+        [
+            container.get("asset_name"),
+        ],
+    ]
+
     parameters = []
 
+    container_property_0_0 = [item[0] for item in container_property_0]
+    container_data_0_0 = [item[0] for item in container_data_0]
+
     parameters.append({
-        'asset': None,
-        'alert_id': None,
+        'asset': container_property_0_0,
+        'alert_id': container_data_0_0,
     })
     ################################################################################
     ## Custom Code Start
@@ -340,12 +336,12 @@ def cf_local_get_process_analysis_url_1(action=None, success=None, container=Non
     ################################################################################    
 
     # call custom function "cbc-playbooks/get_process_analysis_url", returns the custom_function_run_id
-    phantom.custom_function(custom_function='cbc-playbooks/get_process_analysis_url', parameters=parameters, name='cf_local_get_process_analysis_url_1', callback=prompt_confirm_process_analysis)
+    phantom.custom_function(custom_function='cbc-playbooks/get_process_analysis_url', parameters=parameters, name='cf_cbc_playbooks_get_process_analysis_url_1', callback=prompt_confirm_process_analysis)
 
     return
 
-def cf_local_get_alert_triage_url_4(action=None, success=None, container=None, results=None, handle=None, filtered_artifacts=None, filtered_results=None, custom_function=None, **kwargs):
-    phantom.debug('cf_local_get_alert_triage_url_4() called')
+def cf_cbc_playbooks_get_alert_triage_url_4(action=None, success=None, container=None, results=None, handle=None, filtered_artifacts=None, filtered_results=None, custom_function=None, **kwargs):
+    phantom.debug('cf_cbc_playbooks_get_alert_triage_url_4() called')
     
     container_data_0 = phantom.collect2(container=container, datapath=['artifact:*.cef.id', 'artifact:*.id'])
     container_property_0 = [
@@ -374,7 +370,7 @@ def cf_local_get_alert_triage_url_4(action=None, success=None, container=None, r
     ################################################################################    
 
     # call custom function "cbc-playbooks/get_alert_triage_url", returns the custom_function_run_id
-    phantom.custom_function(custom_function='cbc-playbooks/get_alert_triage_url', parameters=parameters, name='cf_local_get_alert_triage_url_4', callback=prompt_alert_triage_confirm)
+    phantom.custom_function(custom_function='cbc-playbooks/get_alert_triage_url', parameters=parameters, name='cf_cbc_playbooks_get_alert_triage_url_4', callback=prompt_alert_triage_confirm)
 
     return
 
@@ -395,7 +391,7 @@ def get_enriched_event_1(action=None, success=None, container=None, results=None
                 'context': {'artifact_id': container_item[1]},
             })
 
-    phantom.act(action="get enriched event", parameters=parameters, assets=['test configuration asset'], callback=join_prompt_choose_cbabalytics_action, name="get_enriched_event_1")
+    phantom.act(action="get enriched event", parameters=parameters, assets=['dev01'], callback=join_prompt_choose_cbabalytics_action, name="get_enriched_event_1")
 
     return
 
@@ -420,7 +416,7 @@ def prompt_choose_cbabalytics_action(action=None, success=None, container=None, 
         },
     ]
 
-    phantom.prompt2(container=container, user=user, message=message, respond_in_mins=30, name="prompt_choose_cbabalytics_action", response_types=response_types, callback=decision_3)
+    phantom.prompt2(container=container, user=user, message=message, respond_in_mins=30, name="prompt_choose_cbabalytics_action", separator=", ", response_types=response_types, callback=decision_3)
 
     return
 
@@ -451,8 +447,18 @@ def decision_3(action=None, success=None, container=None, results=None, handle=N
         prompt_device_policy(action=action, success=success, container=container, results=results, handle=handle, custom_function=custom_function)
         return
 
-    # call connected blocks for 'else' condition 2
-    join_dismiss_alert_2(action=action, success=success, container=container, results=results, handle=handle, custom_function=custom_function)
+    # check for 'elif' condition 2
+    matched = phantom.decision(
+        container=container,
+        action_results=results,
+        conditions=[
+            ["Dismiss alert", "==", "prompt_choose_cbabalytics_action:action_result.summary.responses.0"],
+        ])
+
+    # call connected blocks if condition 2 matched
+    if matched:
+        join_prompt_dismiss(action=action, success=success, container=container, results=results, handle=handle, custom_function=custom_function)
+        return
 
     return
 
@@ -473,7 +479,7 @@ def prompt_device_policy(action=None, success=None, container=None, results=None
         },
     ]
 
-    phantom.prompt2(container=container, user=user, message=message, respond_in_mins=30, name="prompt_device_policy", response_types=response_types, callback=set_device_policy_1)
+    phantom.prompt2(container=container, user=user, message=message, respond_in_mins=30, name="prompt_device_policy", separator=", ", response_types=response_types, callback=set_device_policy_1)
 
     return
 
@@ -500,7 +506,7 @@ def set_device_policy_1(action=None, success=None, container=None, results=None,
                     'context': {'artifact_id': container_item[1]},
                 })
 
-    phantom.act(action="set device policy", parameters=parameters, assets=['test configuration asset'], name="set_device_policy_1")
+    phantom.act(action="set device policy", parameters=parameters, assets=['dev01'], name="set_device_policy_1")
 
     return
 
@@ -525,7 +531,7 @@ def prompt_feed_or_watchlist(action=None, success=None, container=None, results=
         },
     ]
 
-    phantom.prompt2(container=container, user=user, message=message, respond_in_mins=30, name="prompt_feed_or_watchlist", response_types=response_types, callback=prompt_feed_watchlist_name)
+    phantom.prompt2(container=container, user=user, message=message, respond_in_mins=30, name="prompt_feed_or_watchlist", separator=", ", response_types=response_types, callback=prompt_feed_watchlist_name)
 
     return
 
@@ -608,7 +614,7 @@ def remove_ioc_from_feed_1(action=None, success=None, container=None, results=No
         'report_id': "",
     })
 
-    phantom.act(action="remove ioc from feed", parameters=parameters, assets=['test configuration asset'], name="remove_ioc_from_feed_1")
+    phantom.act(action="remove ioc from feed", parameters=parameters, assets=['dev01'], name="remove_ioc_from_feed_1")
 
     return
 
@@ -668,7 +674,7 @@ def remove_ioc_from_watchlist_1(action=None, success=None, container=None, resul
                     'context': {'artifact_id': results_item_1[1]},
                 })
 
-    phantom.act(action="remove ioc from watchlist", parameters=parameters, assets=['test configuration asset'], name="remove_ioc_from_watchlist_1")
+    phantom.act(action="remove ioc from watchlist", parameters=parameters, assets=['dev01'], name="remove_ioc_from_watchlist_1")
 
     return
 
@@ -689,7 +695,7 @@ def prompt_feed_watchlist_name(action=None, success=None, container=None, result
         },
     ]
 
-    phantom.prompt2(container=container, user=user, message=message, respond_in_mins=30, name="prompt_feed_watchlist_name", response_types=response_types, callback=prompt_report_name)
+    phantom.prompt2(container=container, user=user, message=message, respond_in_mins=30, name="prompt_feed_watchlist_name", separator=", ", response_types=response_types, callback=prompt_report_name)
 
     return
 
@@ -721,7 +727,7 @@ def add_ioc_to_feed_or_watchlist_2(action=None, success=None, container=None, re
                         'context': {'artifact_id': container_item[1]},
                     })
 
-    phantom.act(action="add ioc to feed or watchlist", parameters=parameters, assets=['test configuration asset'], name="add_ioc_to_feed_or_watchlist_2")
+    phantom.act(action="add ioc to feed or watchlist", parameters=parameters, assets=['dev01'], name="add_ioc_to_feed_or_watchlist_2")
 
     return
 
@@ -742,7 +748,7 @@ def prompt_report_name(action=None, success=None, container=None, results=None, 
         },
     ]
 
-    phantom.prompt2(container=container, user=user, message=message, respond_in_mins=30, name="prompt_report_name", response_types=response_types, callback=decision_4)
+    phantom.prompt2(container=container, user=user, message=message, respond_in_mins=30, name="prompt_report_name", separator=", ", response_types=response_types, callback=decision_4)
 
     return
 
@@ -751,11 +757,11 @@ def prompt_confirm_process_analysis(action=None, success=None, container=None, r
     
     # set user and message variables for phantom.prompt call
     user = "Administrator"
-    message = """Please click [Here]({0})  for Process Analysis. Add a comment below.{0}"""
+    message = """Please click [Here]({0})  for Process Analysis. Add a comment below."""
 
     # parameter list for template variable replacement
     parameters = [
-        "cf_local_get_process_analysis_url_1:custom_function_result.data.console_url",
+        "cf_cbc_playbooks_get_process_analysis_url_1:custom_function_result.data.console_url",
     ]
 
     #responses:
@@ -768,7 +774,7 @@ def prompt_confirm_process_analysis(action=None, success=None, container=None, r
         },
     ]
 
-    phantom.prompt2(container=container, user=user, message=message, respond_in_mins=30, name="prompt_confirm_process_analysis", parameters=parameters, response_types=response_types, callback=join_prompt_watchlist_action)
+    phantom.prompt2(container=container, user=user, message=message, respond_in_mins=30, name="prompt_confirm_process_analysis", separator=", ", parameters=parameters, response_types=response_types, callback=join_prompt_watchlist_action)
 
     return
 
@@ -782,7 +788,7 @@ def format_ioc_v2_feed(action=None, success=None, container=None, results=None, 
         "artifact:*.cef.threat_cause_actor_sha256",
     ]
 
-    phantom.format(container=container, template=template, parameters=parameters, name="format_ioc_v2_feed")
+    phantom.format(container=container, template=template, parameters=parameters, name="format_ioc_v2_feed", separator=", ")
 
     remove_ioc_from_feed_1(container=container)
 
@@ -798,9 +804,104 @@ def format_ioc_v2_watchlist(action=None, success=None, container=None, results=N
         "artifact:*.cef.threat_cause_actor_sha256",
     ]
 
-    phantom.format(container=container, template=template, parameters=parameters, name="format_ioc_v2_watchlist")
+    phantom.format(container=container, template=template, parameters=parameters, name="format_ioc_v2_watchlist", separator=", ")
 
     remove_ioc_from_watchlist_1(container=container)
+
+    return
+
+def prompt_dismiss(action=None, success=None, container=None, results=None, handle=None, filtered_artifacts=None, filtered_results=None, custom_function=None, **kwargs):
+    phantom.debug('prompt_dismiss() called')
+    
+    # set user and message variables for phantom.prompt call
+    user = "admin"
+    message = """Dismiss this alert only or all future alerts with that threat ID?"""
+
+    #responses:
+    response_types = [
+        {
+            "prompt": "",
+            "options": {
+                "type": "list",
+                "choices": [
+                    "Dismiss alert",
+                    "Dismiss all future alerts",
+                ]
+            },
+        },
+    ]
+
+    phantom.prompt2(container=container, user=user, message=message, respond_in_mins=30, name="prompt_dismiss", separator=", ", response_types=response_types, callback=decision_7)
+
+    return
+
+def join_prompt_dismiss(action=None, success=None, container=None, results=None, handle=None, filtered_artifacts=None, filtered_results=None, custom_function=None):
+    phantom.debug('join_prompt_dismiss() called')
+    
+    # if the joined function has already been called, do nothing
+    if phantom.get_run_data(key='join_prompt_dismiss_called'):
+        return
+
+    # no callbacks to check, call connected block "prompt_dismiss"
+    phantom.save_run_data(key='join_prompt_dismiss_called', value='prompt_dismiss', auto=True)
+
+    prompt_dismiss(container=container, handle=handle)
+    
+    return
+
+def decision_7(action=None, success=None, container=None, results=None, handle=None, filtered_artifacts=None, filtered_results=None, custom_function=None, **kwargs):
+    phantom.debug('decision_7() called')
+
+    # check for 'if' condition 1
+    matched = phantom.decision(
+        container=container,
+        action_results=results,
+        conditions=[
+            ["prompt_dismiss:action_result.summary.responses.0", "==", "Dismiss alert"],
+        ])
+
+    # call connected blocks if condition 1 matched
+    if matched:
+        dismiss_alert_2(action=action, success=success, container=container, results=results, handle=handle, custom_function=custom_function)
+        return
+
+    # check for 'elif' condition 2
+    matched = phantom.decision(
+        container=container,
+        action_results=results,
+        conditions=[
+            ["prompt_dismiss:action_result.summary.responses.0", "==", "Dismiss all future alerts"],
+        ])
+
+    # call connected blocks if condition 2 matched
+    if matched:
+        dismiss_all_future_alerts_1(action=action, success=success, container=container, results=results, handle=handle, custom_function=custom_function)
+        return
+
+    return
+
+def dismiss_all_future_alerts_1(action=None, success=None, container=None, results=None, handle=None, filtered_artifacts=None, filtered_results=None, custom_function=None, **kwargs):
+    phantom.debug('dismiss_all_future_alerts_1() called')
+        
+    #phantom.debug('Action: {0} {1}'.format(action['name'], ('SUCCEEDED' if success else 'FAILED')))
+    
+    # collect data for 'dismiss_all_future_alerts_1' call
+    container_data = phantom.collect2(container=container, datapath=['artifact:*.cef.id', 'artifact:*.id'])
+
+    parameters = []
+    
+    # build parameters list for 'dismiss_all_future_alerts_1' call
+    for container_item in container_data:
+        if container_item[0]:
+            parameters.append({
+                'comment': "\"Dismissed by Splunk SOAR CBC App\"",
+                'alert_id': container_item[0],
+                'remediation_status': "\"fixed\"",
+                # context (artifact id) is added to associate results with the artifact
+                'context': {'artifact_id': container_item[1]},
+            })
+
+    phantom.act(action="dismiss all future alerts", parameters=parameters, assets=['dev01'], name="dismiss_all_future_alerts_1")
 
     return
 
