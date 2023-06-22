@@ -1,0 +1,37 @@
+{
+    "create_time": "2022-11-23T07:55:11.588755+00:00",
+    "custom_function_id": "e4caa251d077eebbc699fd1ec11dc330845df6ff",
+    "description": "Returns an URL to Process Analysis page on CBC",
+    "draft_mode": false,
+    "inputs": [
+        {
+            "contains_type": [
+                "*"
+            ],
+            "description": "",
+            "input_type": "list",
+            "name": "asset",
+            "placeholder": "Asset ID"
+        },
+        {
+            "contains_type": [
+                "*"
+            ],
+            "description": "",
+            "input_type": "list",
+            "name": "alert_id",
+            "placeholder": "Alert ID"
+        }
+    ],
+    "outputs": [
+        {
+            "contains_type": [
+                "*"
+            ],
+            "data_path": "console_url",
+            "description": "URL to process analysis page"
+        }
+    ],
+    "platform_version": "4.10.2.47587",
+    "python_version": "3"
+}
